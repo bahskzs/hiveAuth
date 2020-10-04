@@ -11,7 +11,7 @@ import org.apache.hive.jdbc.HiveDriver;
  * @date 2020-09-18 17:00
  */
 public class HiveJDBC {
-    private static final String URLHIVE = "jdbc:hive2://192.168.41.241:10000/default";
+    private static final String URLHIVE = "jdbc:hive2://192.168.41.244:10000/default;";
     private static Connection connection = null;
 
     public static Connection getHiveConnection() {
@@ -20,8 +20,8 @@ public class HiveJDBC {
                 if (null == connection) {
                     try {
                         Class.forName("org.apache.hive.jdbc.HiveDriver");
-                        connection = DriverManager.getConnection(URLHIVE, "apexinfo", "Apexinfo@2020!!");
-                        System.out.println("hive启动连接成功！");
+                        connection = DriverManager.getConnection(URLHIVE, "apexinfo", "Apexinfo@202!!");
+
                     } catch (SQLException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
@@ -36,15 +36,24 @@ public class HiveJDBC {
 
     public static void main(String args[]) throws SQLException{
 
-        String sql1="select * from ods_pms_bpm_company_t_dss_psm_corpdishones_orc limit 1";
-        PreparedStatement pstm = getHiveConnection().prepareStatement(sql1);
-        ResultSet rs= pstm.executeQuery(sql1);
-
-        while (rs.next()) {
-            System.out.println(rs.getString(2));
+        Connection con = DriverManager.getConnection("jdbc:hive2://192.168.41.241:10005/default", "apexinfo", "Apexinfo@2020!!");
+        Statement stmt = con.createStatement();
+        String tableName = "test4";
+        stmt.execute("create table "+ tableName +" (key int, value string)");
+        String sql ="select count(*) from ods_pms_bpm_company_t_dss_psm_corpdishones_orc ";
+        ResultSet res = stmt.executeQuery(sql);
+        System.out.println("开始获取记录~~~~");
+        if (res.next()) {
+            System.out.println(res.getString(1));
         }
-        pstm.close();
-        rs.close();
+        sql = "describe " + tableName;
+        System.out.println("Running: " + sql);
+        res = stmt.executeQuery(sql);
+        while (res.next()) {
+            System.out.println(res.getString(1) + "\t" + res.getString(2));
+        }
+        stmt.close();
+        res.close();
 
     }
 
