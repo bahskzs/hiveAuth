@@ -1,3 +1,8 @@
+/**
+ * @author cat
+ * @date 2020-09-18 15:50
+ */
+
 package org.apache.hadoop.hive.contrib.auth;
 
 import org.apache.hadoop.conf.Configuration;

@@ -11,7 +11,7 @@ import org.apache.hive.jdbc.HiveDriver;
  * @date 2020-09-18 17:00
  */
 public class HiveJDBC {
-    private static final String URLHIVE = "jdbc:hive2://192.168.41.244:10000/default;";
+    private static final String URLHIVE = "jdbc:hive2://10.96.12.230:10005/default;";
     private static Connection connection = null;
 
     public static Connection getHiveConnection() {
@@ -20,7 +20,7 @@ public class HiveJDBC {
                 if (null == connection) {
                     try {
                         Class.forName("org.apache.hive.jdbc.HiveDriver");
-                        connection = DriverManager.getConnection(URLHIVE, "apexinfo", "Apexinfo@202!!");
+                        connection = DriverManager.getConnection(URLHIVE, "apexinfo", "Apexinfo@2020!!");
 
                     } catch (SQLException e) {
                         e.printStackTrace();
@@ -36,7 +36,7 @@ public class HiveJDBC {
 
     public static void main(String args[]) throws SQLException{
 
-        Connection con = DriverManager.getConnection("jdbc:hive2://192.168.41.241:10005/default", "apexinfo", "Apexinfo@2020!!");
+        Connection con = DriverManager.getConnection("jdbc:hive2://10.96.12.230:10005/default", "hive", "Apexinfo@2020!!");
         Statement stmt = con.createStatement();
         String tableName = "test4";
         stmt.execute("create table "+ tableName +" (key int, value string)");
