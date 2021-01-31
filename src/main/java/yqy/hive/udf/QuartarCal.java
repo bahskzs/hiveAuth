@@ -1,4 +1,4 @@
-package com.yqy.udf;/**
+package yqy.hive.udf;/**
  * @author cat
  * @date 2020-11-26 11:35
  */

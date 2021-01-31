@@ -1,4 +1,4 @@
-package com.hive.utils;
+package yqy.hive.utils;
 
 import org.apache.hadoop.hive.ql.lib.*;
 import org.apache.hadoop.hive.ql.parse.*;
