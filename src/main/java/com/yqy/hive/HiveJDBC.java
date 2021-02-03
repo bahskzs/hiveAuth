@@ -1,4 +1,4 @@
-package yqy.hive;/**
+package com.yqy.hive;/**
  * @author cat
  * @date 2020-09-18 17:00
  */

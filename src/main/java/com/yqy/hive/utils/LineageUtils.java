@@ -1,7 +1,9 @@
-package yqy.hive.utils;
+package com.yqy.hive.utils;
 
 import org.apache.hadoop.hive.ql.lib.*;
 import org.apache.hadoop.hive.ql.parse.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,6 +16,7 @@ import java.util.*;
  */
 public class LineageUtils implements NodeProcessor {
 
+    private static final Logger LOG = LoggerFactory.getLogger("com.yqy.hive.LineageUtils");
 
     // 存放输入表
     TreeSet<String> inputTableList = new TreeSet<String>();
@@ -100,9 +103,9 @@ public class LineageUtils implements NodeProcessor {
         LineageUtils lineageUtils = new LineageUtils();
         String query = args[0];
         lineageUtils.getLineageInfo(query);
-        System.out.println("Input tables = " + lineageUtils.getInputTableList());
-        System.out.println("Output tables = " + lineageUtils.getOutputTableList());
-        System.out.println("with tables = " + lineageUtils.getWithTableList());
+        LOG.error("Input tables = " + lineageUtils.getInputTableList());
+        LOG.error("Output tables = " + lineageUtils.getOutputTableList());
+        LOG.error("with tables = " + lineageUtils.getWithTableList());
     }
 
 }
